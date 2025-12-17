@@ -3,7 +3,7 @@
     box-sizing: border-box;
 }
 
-/* ===== 폰트 ===== */
+/* ===== font ===== */
 @font-face {
     font-family: 'TaebaekMilkyWay';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKmilkyway.woff2') format('woff2');
@@ -11,11 +11,10 @@
     font-display: swap;
 }
 
-/* ===== 기본 텍스트 (고딕) ===== */
 body {
     margin: 0;
     background-color: #f6f4ee;
-    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    font-family: 'TaebaekMilkyWay', sans-serif;
     font-weight: 400;
 }
 
@@ -24,16 +23,22 @@ body {
     width: 100vw;
     height: 100vh;
 
-    max-width: none;
-    max-height: none;
+    max-width: 1024px;
+    max-height: 768px;
 
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ===== 홈 메뉴 ===== */
 .menu {
+    width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 48px;
 }
 
@@ -42,8 +47,8 @@ body {
     position: relative;
     overflow: hidden;
 
-    width: 200px;
-    height: 300px;
+    width: 220px;
+    height: 320px;
 
     display: flex;
     align-items: center;
@@ -51,28 +56,23 @@ body {
 
     border-radius: 28px;
 
-    background: linear-gradient(160deg,
-            #f7f7f5,
-            #e6e6e3);
+    background: linear-gradient(160deg, #f7f7f5, #e6e6e3);
 
     box-shadow:
         0 22px 40px rgba(0, 0, 0, 0.12),
         0 4px 10px rgba(0, 0, 0, 0.08);
 
     cursor: pointer;
-
-    /* 👈 박스 전용 폰트 */
-    font-family: 'TaebaekMilkyWay', sans-serif;
 }
 
-/* ===== 텍스트 ===== */
+/* ===== 메뉴 텍스트 ===== */
 .menu-item p {
     margin: 0;
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: 0.5px;
 }
 
-/* ===== 최소 인터랙션 ===== */
+/* ===== 인터랙션 ===== */
 .menu-item:active {
     transform: translateY(1px);
     box-shadow:
@@ -83,19 +83,45 @@ body {
 .menu-item::after {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
+    inset: 0;
     background: radial-gradient(circle at top left,
             rgba(255, 255, 255, 0.4),
             transparent 55%);
-
     pointer-events: none;
 }
 
-/* ===== 플레이리스트 ===== */
+/* =========================
+   홈 / 뒤로가기 버튼 공통
+========================= */
+.home-btn,
+.back-btn {
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 16px;
+
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+
+    font-size: 14px;
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================
+   플레이리스트
+========================= */
 .playlist-page {
     width: 100%;
     height: 100%;
@@ -108,51 +134,31 @@ body {
 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-}
-
-.home-btn {
-    padding: 8px 14px;
-
-    border: none;
-    border-radius: 14px;
-
-    background: rgba(255, 255, 255, 0.9);
-    color: #000;
-
-    font-size: 14px;
-    letter-spacing: 0.2px;
-
-    cursor: pointer;
-
-    position: sticky;
-    top: calc(env(safe-area-inset-top) + 16px);
-    z-index: 10;
-
-    box-shadow:
-        0 6px 14px rgba(0, 0, 0, 0.1),
-        inset 0 1px 1px rgba(255, 255, 255, 0.6);
-
-    -webkit-tap-highlight-color: transparent;
+    gap: 24px;
 }
 
 .playlist-meta {
-    margin-top: 16px;
-    margin-bottom: 24px;
-
     display: flex;
-    align-items: center;
-    gap: 12px;
+    align-items: flex-start;
+    gap: 16px;
 }
 
 .playlist-desc {
     margin: 0;
+    line-height: 1.6;
 }
 
+.playlist-qr {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+/* 이미지 영역 */
 .playlist-image {
     width: 100%;
-    height: auto;
-    max-height: 70vh;
+    flex: 1;
 
     display: flex;
     align-items: center;
@@ -161,21 +167,13 @@ body {
 
 .playlist-image img {
     width: 100%;
-    height: auto;
+    max-height: calc(100vh - 300px);
     object-fit: contain;
 }
 
-.playlist-qr {
-    width: 66px;
-    height: 66px;
-
-    object-fit: cover;
-    border-radius: 6px;
-
-    opacity: 0.85;
-}
-
-/* ===== 작품 설명 ===== */
+/* =========================
+   작품 설명
+========================= */
 .works-page {
     width: 100%;
     height: 100%;
@@ -196,13 +194,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    padding-top: 48px;
 }
 
 .works-text {
     max-width: 520px;
-    text-align: left;
 }
 
 .works-text h2 {
@@ -213,7 +208,7 @@ body {
 
 .works-text p {
     margin: 0 0 16px 0;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .works-ending {
@@ -224,7 +219,6 @@ body {
     position: absolute;
     right: 32px;
     bottom: 24px;
-
     font-size: 12px;
     opacity: 0.6;
 }
@@ -232,7 +226,6 @@ body {
 /* =========================
    아카이브 메인
 ========================= */
-
 .archive-page {
     width: 100%;
     height: 100%;
@@ -258,33 +251,27 @@ body {
 }
 
 .archive-item {
-    width: 220px;
-    height: 220px;
+    width: 240px;
+    height: 240px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 24px;
+    border-radius: 28px;
 
-    background: linear-gradient(160deg,
-            #f1efe9,
-            #e2dfd6);
+    background: linear-gradient(160deg, #f1efe9, #e2dfd6);
 
     box-shadow:
         0 18px 36px rgba(0, 0, 0, 0.1),
         0 4px 10px rgba(0, 0, 0, 0.06);
 
     cursor: pointer;
-
-    /* 👈 아카이브 박스 전용 폰트 */
-    font-family: 'TaebaekMilkyWay', sans-serif;
 }
 
 /* =========================
    아카이브 상세
 ========================= */
-
 .archive-detail {
     width: 100%;
     height: 100%;
@@ -301,29 +288,41 @@ body {
 .archive-scroll {
     margin-top: 24px;
 
-    height: calc(100% - 48px);
+    height: calc(100% - 60px);
     overflow-y: auto;
 
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 40px;
 
     padding-bottom: 40px;
 }
 
+/* 사진은 둥근 처리 없음 */
 .archive-scroll img {
     width: 80%;
     margin: 0 auto;
     border-radius: 0;
 }
 
-.archive-page .home-btn {
-    align-self: flex-start;
-}
-
+/* ===== 버튼 최종(홈/돌아가기) : 좌측 상단 고정 + 절대 늘어나지 않게 ===== */
+.home-btn,
 .back-btn {
-    padding: 8px 14px;
+    position: fixed;
+    top: calc(env(safe-area-inset-top) + 16px);
+    left: calc(env(safe-area-inset-left) + 16px);
+    z-index: 9999;
 
+    width: auto !important;
+    /* 가로로 길어지는 것 방지 */
+    display: inline-flex;
+    /* 내용만큼만 */
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    /* 줄바꿈 방지 */
+
+    padding: 8px 14px;
     border: none;
     border-radius: 14px;
 
@@ -340,4 +339,12 @@ body {
         inset 0 1px 1px rgba(255, 255, 255, 0.6);
 
     -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== 버튼이 이미지/텍스트와 겹치지 않도록, 콘텐츠 상단 여백 확보 ===== */
+.playlist-page,
+.works-page,
+.archive-page,
+.archive-detail {
+    padding-top: calc(32px + env(safe-area-inset-top) + 56px);
 }

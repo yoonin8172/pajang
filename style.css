@@ -3,6 +3,7 @@
     box-sizing: border-box;
 }
 
+/* ===== 폰트 ===== */
 @font-face {
     font-family: 'TaebaekMilkyWay';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKmilkyway.woff2') format('woff2');
@@ -10,11 +11,11 @@
     font-display: swap;
 }
 
+/* ===== 기본 텍스트 (고딕) ===== */
 body {
     margin: 0;
     background-color: #f6f4ee;
-    /* 따뜻한 아이보리 */
-    font-family: 'TaebaekMilkyWay', sans-serif;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
     font-weight: 400;
 }
 
@@ -23,24 +24,18 @@ body {
     width: 100vw;
     height: 100vh;
 
-    max-width: 1024px;
-    max-height: 768px;
+    max-width: none;
+    max-height: none;
 
-    margin: 0 auto;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
 /* ===== 홈 메뉴 ===== */
 .menu {
     display: flex;
     flex-direction: row;
-    /* 👈 이 줄이 핵심 */
     gap: 48px;
 }
-
 
 /* ===== 메뉴 박스 ===== */
 .menu-item {
@@ -65,6 +60,9 @@ body {
         0 4px 10px rgba(0, 0, 0, 0.08);
 
     cursor: pointer;
+
+    /* 👈 박스 전용 폰트 */
+    font-family: 'TaebaekMilkyWay', sans-serif;
 }
 
 /* ===== 텍스트 ===== */
@@ -82,8 +80,6 @@ body {
         inset 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
-
-
 .menu-item::after {
     content: "";
     position: absolute;
@@ -99,11 +95,7 @@ body {
     pointer-events: none;
 }
 
-
-
-/*플리*/
-
-
+/* ===== 플레이리스트 ===== */
 .playlist-page {
     width: 100%;
     height: 100%;
@@ -120,63 +112,6 @@ body {
 }
 
 .home-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-
-    cursor: pointer;
-}
-
-.playlist-desc {
-    margin-top: 16px;
-    /* 홈버튼 기준 한 줄 */
-    margin-bottom: 24px;
-}
-
-.playlist-image {
-    width: 100%;
-    height: 420px;
-
-    border-radius: 24px;
-    overflow: hidden;
-}
-
-.playlist-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
-.playlist-meta {
-    margin-top: 16px;
-    /* 홈버튼 기준 한 줄 */
-    margin-bottom: 24px;
-
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.playlist-desc {
-    margin: 0;
-}
-
-.playlist-qr {
-    width: 66px;
-    height: 66px;
-
-    object-fit: cover;
-    border-radius: 6px;
-
-    opacity: 0.85;
-    /* 살짝 존재감 줄이기 */
-}
-
-/*홈버튼*/
-
-.home-btn {
     padding: 8px 14px;
 
     border: none;
@@ -190,6 +125,10 @@ body {
 
     cursor: pointer;
 
+    position: sticky;
+    top: calc(env(safe-area-inset-top) + 16px);
+    z-index: 10;
+
     box-shadow:
         0 6px 14px rgba(0, 0, 0, 0.1),
         inset 0 1px 1px rgba(255, 255, 255, 0.6);
@@ -197,8 +136,46 @@ body {
     -webkit-tap-highlight-color: transparent;
 }
 
-/*작품설명*/
+.playlist-meta {
+    margin-top: 16px;
+    margin-bottom: 24px;
 
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.playlist-desc {
+    margin: 0;
+}
+
+.playlist-image {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.playlist-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.playlist-qr {
+    width: 66px;
+    height: 66px;
+
+    object-fit: cover;
+    border-radius: 6px;
+
+    opacity: 0.85;
+}
+
+/* ===== 작품 설명 ===== */
 .works-page {
     width: 100%;
     height: 100%;
@@ -252,7 +229,6 @@ body {
     opacity: 0.6;
 }
 
-
 /* =========================
    아카이브 메인
 ========================= */
@@ -279,13 +255,11 @@ body {
     justify-content: center;
     gap: 48px;
     margin-top: 64px;
-
 }
 
 .archive-item {
     width: 220px;
     height: 220px;
-    /* 👈 정사각형 */
 
     display: flex;
     align-items: center;
@@ -302,8 +276,10 @@ body {
         0 4px 10px rgba(0, 0, 0, 0.06);
 
     cursor: pointer;
-}
 
+    /* 👈 아카이브 박스 전용 폰트 */
+    font-family: 'TaebaekMilkyWay', sans-serif;
+}
 
 /* =========================
    아카이브 상세
@@ -332,15 +308,12 @@ body {
     flex-direction: column;
     gap: 32px;
 
-    /* 스크롤 힌트용 여백 */
     padding-bottom: 40px;
 }
 
-/* 사진: 둥근 처리 ❌ */
 .archive-scroll img {
     width: 80%;
     margin: 0 auto;
-
     border-radius: 0;
 }
 

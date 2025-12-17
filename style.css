@@ -1,0 +1,370 @@
+/* ===== reset ===== */
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'TaebaekMilkyWay';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/TAEBAEKmilkyway.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
+body {
+    margin: 0;
+    background-color: #f6f4ee;
+    /* 따뜻한 아이보리 */
+    font-family: 'TaebaekMilkyWay', sans-serif;
+    font-weight: 400;
+}
+
+/* ===== 전체 프레임 (iPad 가로 기준) ===== */
+.container {
+    width: 100vw;
+    height: 100vh;
+
+    max-width: 1024px;
+    max-height: 768px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== 홈 메뉴 ===== */
+.menu {
+    display: flex;
+    flex-direction: row;
+    /* 👈 이 줄이 핵심 */
+    gap: 48px;
+}
+
+
+/* ===== 메뉴 박스 ===== */
+.menu-item {
+    position: relative;
+    overflow: hidden;
+
+    width: 200px;
+    height: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 28px;
+
+    background: linear-gradient(160deg,
+            #f7f7f5,
+            #e6e6e3);
+
+    box-shadow:
+        0 22px 40px rgba(0, 0, 0, 0.12),
+        0 4px 10px rgba(0, 0, 0, 0.08);
+
+    cursor: pointer;
+}
+
+/* ===== 텍스트 ===== */
+.menu-item p {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+/* ===== 최소 인터랙션 ===== */
+.menu-item:active {
+    transform: translateY(1px);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.06),
+        inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+
+
+.menu-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: radial-gradient(circle at top left,
+            rgba(255, 255, 255, 0.4),
+            transparent 55%);
+
+    pointer-events: none;
+}
+
+
+
+/*플리*/
+
+
+.playlist-page {
+    width: 100%;
+    height: 100%;
+
+    max-width: 1024px;
+    max-height: 768px;
+
+    margin: 0 auto;
+    padding: 32px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.home-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    cursor: pointer;
+}
+
+.playlist-desc {
+    margin-top: 16px;
+    /* 홈버튼 기준 한 줄 */
+    margin-bottom: 24px;
+}
+
+.playlist-image {
+    width: 100%;
+    height: 420px;
+
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.playlist-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.playlist-meta {
+    margin-top: 16px;
+    /* 홈버튼 기준 한 줄 */
+    margin-bottom: 24px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.playlist-desc {
+    margin: 0;
+}
+
+.playlist-qr {
+    width: 66px;
+    height: 66px;
+
+    object-fit: cover;
+    border-radius: 6px;
+
+    opacity: 0.85;
+    /* 살짝 존재감 줄이기 */
+}
+
+/*홈버튼*/
+
+.home-btn {
+    padding: 8px 14px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+
+    font-size: 14px;
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+/*작품설명*/
+
+.works-page {
+    width: 100%;
+    height: 100%;
+
+    max-width: 1024px;
+    max-height: 768px;
+
+    margin: 0 auto;
+    padding: 32px;
+
+    position: relative;
+}
+
+.works-center {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 48px;
+}
+
+.works-text {
+    max-width: 520px;
+    text-align: left;
+}
+
+.works-text h2 {
+    margin: 0 0 24px 0;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.works-text p {
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+}
+
+.works-ending {
+    margin-top: 24px;
+}
+
+.works-signature {
+    position: absolute;
+    right: 32px;
+    bottom: 24px;
+
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+
+/* =========================
+   아카이브 메인
+========================= */
+
+.archive-page {
+    width: 100%;
+    height: 100%;
+
+    max-width: 1024px;
+    max-height: 768px;
+
+    margin: 0 auto;
+    padding: 32px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.archive-menu {
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 64px;
+
+}
+
+.archive-item {
+    width: 220px;
+    height: 220px;
+    /* 👈 정사각형 */
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 24px;
+
+    background: linear-gradient(160deg,
+            #f1efe9,
+            #e2dfd6);
+
+    box-shadow:
+        0 18px 36px rgba(0, 0, 0, 0.1),
+        0 4px 10px rgba(0, 0, 0, 0.06);
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   아카이브 상세
+========================= */
+
+.archive-detail {
+    width: 100%;
+    height: 100%;
+
+    max-width: 1024px;
+    max-height: 768px;
+
+    margin: 0 auto;
+    padding: 32px;
+
+    position: relative;
+}
+
+.archive-scroll {
+    margin-top: 24px;
+
+    height: calc(100% - 48px);
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    /* 스크롤 힌트용 여백 */
+    padding-bottom: 40px;
+}
+
+/* 사진: 둥근 처리 ❌ */
+.archive-scroll img {
+    width: 80%;
+    margin: 0 auto;
+
+    border-radius: 0;
+}
+
+.archive-page .home-btn {
+    align-self: flex-start;
+}
+
+.back-btn {
+    padding: 8px 14px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+
+    font-size: 14px;
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.1),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+
+    -webkit-tap-highlight-color: transparent;
+}
